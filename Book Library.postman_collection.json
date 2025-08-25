@@ -97,7 +97,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n//\"name\":\"Golpoguccho\",\r\n\"name\":\"{{book_name}}\",\r\n\"isbn\":\"{{isbn}}\",\r\n\"aisle\":\"1002\",\r\n\"author\":\"{{author_name}}\"\r\n//\"author\":\"Rabindranath\"\r\n}\r\n",
+					"raw": "{\r\n//\"name\":\"Golpoguccho\",\r\n\"name\":\"{{book_name}}\",\r\n\"isbn\":\"{{isbn}}\",\r\n\"aisle\":\"1002\",\r\n\"demo\":\"yes\",\r\n\"author\":\"{{author_name}}\"\r\n//\"author\":\"Rabindranath\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
