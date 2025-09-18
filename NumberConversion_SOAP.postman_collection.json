@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "23cda9cd-42f4-4573-a95b-77919b31fd4f",
+		"name": "NumberConversion SOAP",
+		"description": "SOAP 1.1 request to NumberConversion web service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46770212",
+		"_collection_link": "https://www.postman.com/souravmil-7517038/workspace/automation-testing/collection/46770212-23cda9cd-42f4-4573-a95b-77919b31fd4f?action=share&source=collection_link&creator=46770212"
+	},
+	"item": [
+		{
+			"name": "NumberToWords",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = xml2Json(pm.response.text());\r",
+							"console.log(responseJson[\"soap:Envelope\"][\"soap:Body\"][\"NumberToWordsResponse\"][\"NumberToWordsResult\"]);\r",
+							"pm.test(\"Validate Srting of response\",function(){\r",
+							"    const actualResponse = responseJson[\"soap:Envelope\"][\"soap:Body\"][\"NumberToWordsResponse\"][\"NumberToWordsResult\"]\r",
+							"    pm.expect(pm.collectionVariables.get(\"result\")).to.eql(actualResponse)\r",
+							"})\r",
+							"\r",
+							"pm.test(\"parsing the response\",function(){\r",
+							"    pm.response.to.have.status(\"200\")\r",
+							"    pm.expect(pm.response.text()).to.include(pm.collectionVariables.get(\"result\"))\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml; charset=utf-8"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "http://www.dataaccess.com/webservicesserver/NumberConversion.wso/NumberToWords"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <NumberToWords xmlns=\"http://www.dataaccess.com/webservicesserver/\">\n      <ubiNum>{{number}}</ubiNum>\n    </NumberToWords>\n  </soap:Body>\n</soap:Envelope>"
+				},
+				"url": {
+					"raw": "https://www.dataaccess.com/webservicesserver/NumberConversion.wso?number=3955&result=three thousand nine hundred and fifty five",
+					"protocol": "https",
+					"host": [
+						"www",
+						"dataaccess",
+						"com"
+					],
+					"path": [
+						"webservicesserver",
+						"NumberConversion.wso"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "3955"
+						},
+						{
+							"key": "result",
+							"value": "three thousand nine hundred and fifty five"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
